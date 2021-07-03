@@ -33,9 +33,8 @@ public class PaymentInCredit {
         return new PaymentInCredit();
     }
 
-    public PaymentInCredit emptyField() {
+    public void emptyField() {
         buttonContinue.click();
-        return new PaymentInCredit();
     }
 
     public PaymentInCredit paymentByCardInvalidPeriod(DataHelper.NumberCard numberCard, DataHelper.MonthYear monthYear, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
@@ -48,9 +47,8 @@ public class PaymentInCredit {
         return new PaymentInCredit();
     }
 
-    public PaymentInCredit clickCloseMessageLuck() {
+    public void clickCloseMessageLuck() {
         buttonClose.click();
-        return new PaymentInCredit();
     }
 
 
