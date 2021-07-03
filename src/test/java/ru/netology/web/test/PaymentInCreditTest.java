@@ -12,6 +12,8 @@ import ru.netology.web.page.TravelDay;
 import static com.codeborne.selenide.Selenide.open;
 
 public class PaymentInCreditTest {
+    private final static String URL = "http://localhost:8080";
+
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -24,7 +26,7 @@ public class PaymentInCreditTest {
 
     @Test
     void validFiledPaymentCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val month = DataHelper.Month.monthValid();
@@ -37,7 +39,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFiledCardDeflectedCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardDeflected();
         val month = DataHelper.Month.monthValid();
@@ -50,7 +52,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFiledCardNotExistCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardNotExist();
         val month = DataHelper.Month.monthValid();
@@ -63,7 +65,7 @@ public class PaymentInCreditTest {
 
     @Test
     void emptyFiledCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         paymentByCard.emptyField();
         paymentByCard.shouldInscriptionFillInField();
@@ -71,7 +73,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFormatDataCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardInvalidFormat();
         val month = DataHelper.Month.monthInvalidFormat();
@@ -84,7 +86,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFieldMonthCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val month = DataHelper.Month.monthInvalidWith13();
@@ -97,7 +99,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFieldYearCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val month = DataHelper.Month.monthValid();
@@ -110,7 +112,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFieldMonthCurrentYearCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val monthYear = DataHelper.MonthYear.invalidMonthCurrentYear();
@@ -122,7 +124,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFieldYearFinishPeriodCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val month = DataHelper.Month.monthValid();
@@ -135,7 +137,7 @@ public class PaymentInCreditTest {
 
     @Test
     void invalidFieldNameCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
         val month = DataHelper.Month.monthValid();
@@ -148,7 +150,7 @@ public class PaymentInCreditTest {
 
     @Test
     void notShouldMessageLuckIfCardNotExistCredit() {
-        val travelDay = open("http://localhost:8080", TravelDay.class);
+        val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardNotExist();
         val month = DataHelper.Month.monthValid();
