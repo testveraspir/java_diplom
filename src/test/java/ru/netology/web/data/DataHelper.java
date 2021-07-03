@@ -49,7 +49,7 @@ public class DataHelper {
         public static Month monthValid() {
             int number = 1 + (int) (Math.random() * 12);
             if (number < 10)
-                return new Month("0"+String.valueOf(number));
+                return new Month("0" + number);
             else return new Month(String.valueOf(number));
         }
 
@@ -92,8 +92,7 @@ public class DataHelper {
 
         public static Year yearFinishPeriod() {
             int number = 1 + (int) (Math.random() * 9);
-            String numberString = String.valueOf(number);
-            return new Year("0"+numberString);
+            return new Year("0" + number);
         }
     }
 
@@ -132,16 +131,14 @@ public class DataHelper {
             LocalDate date = LocalDate.now();
             date = date.minusMonths(1);
             int dateInt = date.getMonthValue();
+            String month;
             if (dateInt < 10) {
-                String monthWith0 = String.valueOf(dateInt);
-                String month = "0" + monthWith0;
-                String year = date.format(DateTimeFormatter.ofPattern("yy"));
-                return new MonthYear(month, year);
+                month = "0" + dateInt;
             } else {
-                String month = String.valueOf(dateInt);
-                String year = date.format(DateTimeFormatter.ofPattern("yy"));
-                return new MonthYear(month, year);
+                month = String.valueOf(dateInt);
             }
+            String year = date.format(DateTimeFormatter.ofPattern("yy"));
+            return new MonthYear(month, year);
 
         }
     }
