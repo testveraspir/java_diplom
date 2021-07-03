@@ -27,7 +27,6 @@ public class PaymentTravelDayTest {
         val travelDay = open("http://localhost:8080", TravelDay.class);
         val paymentByCard = travelDay.clickButtonPay();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
-        System.out.println(numberCard);
         val month = DataHelper.Month.monthValid();
         val year = DataHelper.Year.yearValid();
         val name = DataHelper.Name.nameGenerate("en");
