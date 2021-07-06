@@ -4,12 +4,17 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
+import ru.netology.web.data.SQLHelper;
 import ru.netology.web.page.TravelDay;
 
+import java.sql.SQLException;
+
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentInCreditTest {
     private final static String URL = "http://localhost:8080";
@@ -24,8 +29,13 @@ public class PaymentInCreditTest {
         SelenideLogger.removeListener("allure");
     }
 
+    @AfterEach
+    void clear() throws SQLException {
+        SQLHelper.clearTables();
+    }
+
     @Test
-    void validFiledPaymentCredit() {
+    void validFiledPaymentCredit() throws SQLException {
         val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
@@ -35,10 +45,12 @@ public class PaymentInCreditTest {
         val cvcCvv = DataHelper.CvcCvv.cvcCvvValid();
         paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
         paymentByCard.shouldMessageAboutLuck();
+        assertEquals(SQLHelper.APPROVED, SQLHelper.getStatusPayment(SQLHelper.REQUEST_STATUS_CREDIT, SQLHelper.COLUMN_STATUS_CREDIT));
+        assertEquals(SQLHelper.getStatusPayment(SQLHelper.REQUEST_BANK_ID_CREDIT, SQLHelper.COLUMN_BANK_ID_CREDIT), SQLHelper.getStatusPayment(SQLHelper.REQUEST_ORDER_ENTITY, SQLHelper.COLUMN_PAYMENT_ID));
     }
 
     @Test
-    void invalidFiledCardDeflectedCredit() {
+    void invalidFiledCardDeflectedCredit() throws SQLException {
         val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardDeflected();
@@ -48,6 +60,8 @@ public class PaymentInCreditTest {
         val cvcCvv = DataHelper.CvcCvv.cvcCvvValid();
         paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
         paymentByCard.shouldMessageAboutError();
+        assertEquals(SQLHelper.DECLINED, SQLHelper.getStatusPayment(SQLHelper.REQUEST_STATUS_CREDIT, SQLHelper.COLUMN_STATUS_CREDIT));
+        assertEquals(SQLHelper.getStatusPayment(SQLHelper.REQUEST_BANK_ID_CREDIT, SQLHelper.COLUMN_BANK_ID_CREDIT), SQLHelper.getStatusPayment(SQLHelper.REQUEST_ORDER_ENTITY, SQLHelper.COLUMN_PAYMENT_ID));
     }
 
     @Test
@@ -162,4 +176,5 @@ public class PaymentInCreditTest {
         paymentByCard.clickCloseMessageLuck();
         paymentByCard.notShouldMessageAboutLuck();
     }
+
 }

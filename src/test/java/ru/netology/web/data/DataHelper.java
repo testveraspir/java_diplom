@@ -71,8 +71,8 @@ public class DataHelper {
         public static Year yearValid() {
             LocalDate date = LocalDate.now();
             String yearString = date.format(DateTimeFormatter.ofPattern("yy"));
-            int yearFirst = Integer.parseInt(yearString);
-            int yearLast = yearFirst + 5;
+            int yearFirst = Integer.parseInt(yearString) + 1;
+            int yearLast = yearFirst + 4;
             int number = yearFirst + (int) (Math.random() * (yearLast - yearFirst + 1));
             return new Year(String.valueOf(number));
         }

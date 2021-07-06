@@ -33,6 +33,7 @@ public class PaymentByCard {
         return new PaymentByCard();
     }
 
+
     public void emptyField() {
         buttonContinue.click();
     }
