@@ -34,6 +34,7 @@ public class PaymentByCardTest {
         SQLHelper.clearTables();
     }
 
+    // проверка одобренной карты и подключения базы данных
     @Test
     void validFiledPaymentByCard() throws SQLException {
         val travelDay = open(URL, TravelDay.class);
@@ -45,14 +46,11 @@ public class PaymentByCardTest {
         val cvcCvv = DataHelper.CvcCvv.cvcCvvValid();
         paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
         paymentByCard.shouldMessageAboutLuck();
-        System.out.println("Значение статуса: " + SQLHelper.getStatusPayment(SQLHelper.REQUEST_STATUS_PAYMENT, SQLHelper.COLUMN_STATUS_PAYMENT));
         assertEquals(SQLHelper.getStatusPayment(SQLHelper.REQUEST_ORDER_ENTITY, SQLHelper.COLUMN_PAYMENT_ID), SQLHelper.getStatusPayment(SQLHelper.REQUEST_TRANSACTION_ID_PAYMENT, SQLHelper.COLUMN_TRANSACTION_ID_PAYMENT));
-        System.out.println("Значение столбца payment_id: " + SQLHelper.getStatusPayment(SQLHelper.REQUEST_ORDER_ENTITY, SQLHelper.COLUMN_PAYMENT_ID));
-        System.out.println("Значение столбца transaction_id: " + SQLHelper.getStatusPayment(SQLHelper.REQUEST_TRANSACTION_ID_PAYMENT, SQLHelper.COLUMN_TRANSACTION_ID_PAYMENT));
         assertEquals(SQLHelper.APPROVED, SQLHelper.getStatusPayment(SQLHelper.REQUEST_STATUS_PAYMENT, SQLHelper.COLUMN_STATUS_PAYMENT));
     }
 
-
+    // проверка отклоненной карты и подключения базы данных
     @Test
     void invalidFiledCardDeflected() throws SQLException {
         val travelDay = open(URL, TravelDay.class);
@@ -68,7 +66,7 @@ public class PaymentByCardTest {
         assertEquals(SQLHelper.getStatusPayment(SQLHelper.REQUEST_ORDER_ENTITY, SQLHelper.COLUMN_PAYMENT_ID), SQLHelper.getStatusPayment(SQLHelper.REQUEST_TRANSACTION_ID_PAYMENT, SQLHelper.COLUMN_TRANSACTION_ID_PAYMENT));
     }
 
-
+    // проверка несуществующей карты
     @Test
     void invalidFiledCardNotExist() {
         val travelDay = open(URL, TravelDay.class);
@@ -82,6 +80,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageAboutError();
     }
 
+    //проверка отсутствия данных в полях
     @Test
     void emptyFiled() {
         val travelDay = open(URL, TravelDay.class);
@@ -90,7 +89,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldInscriptionFillInField();
     }
 
-
+    //проверка ввода данных в неверном формате
     @Test
     void invalidFormatData() {
         val travelDay = open(URL, TravelDay.class);
@@ -104,6 +103,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldInscriptionInvalidFormat();
     }
 
+    // проверка ввода месяца больше 12
     @Test
     void invalidFieldMonth() {
         val travelDay = open(URL, TravelDay.class);
@@ -117,7 +117,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageUnderFieldMonth();
     }
 
-
+    // проверка ввода года карты, сроком действия больше пяти лет
     @Test
     void invalidFieldYear() {
         val travelDay = open(URL, TravelDay.class);
@@ -131,6 +131,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageUnderFieldYearInvalid();
     }
 
+    // проверка истекшего месяца в текущем году
     @Test
     void invalidFieldMonthCurrentYear() {
         val travelDay = open(URL, TravelDay.class);
@@ -143,7 +144,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageUnderFieldMonth();
     }
 
-
+    // проверка ввода карты с истекшим годом
     @Test
     void invalidFieldYearFinishPeriod() {
         val travelDay = open(URL, TravelDay.class);
@@ -157,7 +158,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageUnderFieldYearFinishDate();
     }
 
-
+    // проверка ввода владельца карты на русском языке
     @Test
     void invalidFieldName() {
         val travelDay = open(URL, TravelDay.class);
@@ -171,7 +172,7 @@ public class PaymentByCardTest {
         paymentByCard.shouldMessageUnderFieldNameInvalid();
     }
 
-
+    // проверка отсутствия сообщения об успехе
     @Test
     void notShouldMessageLuck() {
         val travelDay = open(URL, TravelDay.class);
@@ -187,6 +188,7 @@ public class PaymentByCardTest {
         paymentByCard.notShouldMessageAboutLuck();
     }
 
+    // проверка ввода нулевых значений в поля: номер карты, месяц, cvc/cvv
     @Test
     void shouldMessageFieldFrom0() {
         val travelDay = open(URL, TravelDay.class);
@@ -201,6 +203,7 @@ public class PaymentByCardTest {
 
     }
 
+    // проверка ввода в поле “Владелец” цифр
     @Test
     void shouldMessageErrorInvalidName() {
         val travelDay = open(URL, TravelDay.class);
