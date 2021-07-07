@@ -25,6 +25,10 @@ public class DataHelper {
             return new NumberCard("4444444444444442");
         }
 
+        public static NumberCard number0() {
+            return new NumberCard("0000000000000000");
+        }
+
         public static NumberCard numberCardNotExist() {
             while (true) {
                 long number = 1111111111111111L + (long) (Math.random() * 8888888888888889L);
@@ -40,6 +44,7 @@ public class DataHelper {
             String numberString = String.valueOf(number);
             return new NumberCard(numberString);
         }
+
     }
 
     @Value
@@ -61,6 +66,10 @@ public class DataHelper {
         public static Month monthInvalidWith13() {
             int number = 13 + (int) (Math.random() * (99 - 13 + 1));
             return new Month(String.valueOf(number));
+        }
+
+        public static Month month0() {
+            return new Month("00");
         }
     }
 
@@ -105,6 +114,12 @@ public class DataHelper {
             String name = faker.name().firstName() + " " + faker.name().lastName();
             return new Name(name);
         }
+
+        public static Name nameNumber(){
+            Faker faker=new Faker();
+            String name=String.valueOf(faker.number().numberBetween(1, 9999));
+            return new Name(name);
+        }
     }
 
     @Value
@@ -119,6 +134,10 @@ public class DataHelper {
         public static CvcCvv cvcCvvInvalidFormat() {
             int number = (int) (Math.random() * 99);
             return new CvcCvv(String.valueOf(number));
+        }
+
+        public static CvcCvv cvcCvv0() {
+            return new CvcCvv("000");
         }
     }
 

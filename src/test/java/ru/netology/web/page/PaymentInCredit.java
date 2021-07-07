@@ -104,4 +104,11 @@ public class PaymentInCredit {
         $(".notification_status_ok").shouldBe(Condition.hidden);
 
     }
+
+    public void shouldInscriptionAbout0() {
+        $$(".input__inner").find(Condition.text("Номер карты")).$(".input__sub").shouldHave(Condition.exactText("Поле не должно состоять целиком из нулей"));
+        $$(".input__inner").find(Condition.text("Месяц")).$(".input__sub").shouldHave(Condition.exactText("Поле не должно состоять целиком из нулей"));
+        $$(".input__inner").find(Condition.text("CVC/CVV")).$(".input__sub").shouldHave(Condition.exactText("Поле не должно состоять целиком из нулей"));
+
+    }
 }

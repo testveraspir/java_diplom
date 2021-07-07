@@ -187,4 +187,31 @@ public class PaymentByCardTest {
         paymentByCard.notShouldMessageAboutLuck();
     }
 
+    @Test
+    void shouldMessageFieldFrom0() {
+        val travelDay = open(URL, TravelDay.class);
+        val paymentByCard = travelDay.clickButtonPay();
+        val numberCard = DataHelper.NumberCard.number0();
+        val month = DataHelper.Month.month0();
+        val year = DataHelper.Year.yearValid();
+        val name = DataHelper.Name.nameGenerate("en");
+        val cvcCvv = DataHelper.CvcCvv.cvcCvv0();
+        paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
+        paymentByCard.shouldInscriptionAbout0();
+
+    }
+
+    @Test
+    void shouldMessageErrorInvalidName() {
+        val travelDay = open(URL, TravelDay.class);
+        val paymentByCard = travelDay.clickButtonPay();
+        val numberCard = DataHelper.NumberCard.numberCardApproved();
+        val month = DataHelper.Month.monthValid();
+        val year = DataHelper.Year.yearValid();
+        val name = DataHelper.Name.nameNumber();
+        val cvcCvv = DataHelper.CvcCvv.cvcCvvValid();
+        paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
+        paymentByCard.shouldMessageUnderFieldNameInvalid();
+    }
+
 }
