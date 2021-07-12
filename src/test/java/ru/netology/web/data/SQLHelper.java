@@ -11,7 +11,7 @@ public class SQLHelper {
      public static final String DECLINED = "DECLINED";
      private static final String url = "jdbc:mysql://localhost:3306/app"; // для MySQL
      //для Postgres
-     // private static final String url = "jdbc:postgresql:5432/app";
+     //private static final String url = "jdbc:postgresql:5432/app";
      private static final String user = "app";
      private static final String password = "pass";
      public static final String REQUEST_ORDER_ENTITY = "SELECT payment_id FROM order_entity";
