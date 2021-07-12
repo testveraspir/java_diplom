@@ -1,5 +1,6 @@
 package ru.netology.web.data;
 
+import lombok.SneakyThrows;
 import lombok.val;
 
 import java.sql.DriverManager;
@@ -24,7 +25,8 @@ public class SQLHelper {
      public static final String REQUEST_TRANSACTION_ID_PAYMENT = "SELECT transaction_id FROM payment_entity";
      public static final String COLUMN_TRANSACTION_ID_PAYMENT = "transaction_id";
 
-     public static void clearTables() throws SQLException {
+     @SneakyThrows
+     public static void clearTables() {
           val dataSQL1 = "DELETE FROM credit_request_entity";
           val dataSQL2 = "DELETE FROM order_entity";
           val dataSQL3 = "DELETE FROM payment_entity";
@@ -42,8 +44,9 @@ public class SQLHelper {
 
      }
 
-     public static String getStatusPayment(String dataRequest, String nameColumn) throws SQLException {
-         String dataSQL = null;
+     @SneakyThrows
+     public static String getStatusPayment(String dataRequest, String nameColumn) {
+          String dataSQL = null;
           try (val conn = DriverManager.getConnection(
                   url, user, password);
                val dataStmt1 = conn.prepareStatement(dataRequest);

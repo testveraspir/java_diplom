@@ -20,31 +20,30 @@ public class PaymentInCredit {
     private SelenideElement buttonClose = $(".notification_status_error").$("button");
 
     public PaymentInCredit() {
-        heading.shouldBe(Condition.visible, Duration.ofMinutes(5));
+        heading.shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
-    public PaymentInCredit paymentByCard(DataHelper.NumberCard numberCard, DataHelper.Month month, DataHelper.Year year, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
+    public void paymentByCard(DataHelper.NumberCard numberCard, DataHelper.Month month, DataHelper.Year year, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
         numberCardField.setValue(numberCard.getNumberCard());
         monthField.setValue(month.getMonth());
         yearField.setValue(year.getYear());
         nameField.setValue(name.getName());
         cvcCvvField.setValue(cvcCvv.getCvcCvv());
         buttonContinue.click();
-        return new PaymentInCredit();
     }
 
     public void emptyField() {
         buttonContinue.click();
     }
 
-    public PaymentInCredit paymentByCardInvalidPeriod(DataHelper.NumberCard numberCard, DataHelper.MonthYear monthYear, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
+    public void paymentByCardInvalidPeriod(DataHelper.NumberCard numberCard, DataHelper.MonthYear monthYear, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
         numberCardField.setValue(numberCard.getNumberCard());
         monthField.setValue(monthYear.getMonthInvalid());
         yearField.setValue(monthYear.getCurrentYear());
         nameField.setValue(name.getName());
         cvcCvvField.setValue(cvcCvv.getCvcCvv());
         buttonContinue.click();
-        return new PaymentInCredit();
+
     }
 
     public void clickCloseMessageLuck() {

@@ -30,13 +30,13 @@ public class PaymentInCreditTest {
     }
 
     @AfterEach
-    void clear() throws SQLException {
+    void clear() {
         SQLHelper.clearTables();
     }
 
     // проверка одобренной карты и подключения базы данных
     @Test
-    void validFiledPaymentCredit() throws SQLException {
+    void validFiledPaymentCredit() {
         val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPayCredit();
         val numberCard = DataHelper.NumberCard.numberCardApproved();
