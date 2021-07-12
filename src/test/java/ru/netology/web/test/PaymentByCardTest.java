@@ -52,7 +52,7 @@ public class PaymentByCardTest {
 
     // проверка отклоненной карты и подключения базы данных
     @Test
-    void invalidFiledCardDeflected() throws SQLException {
+    void invalidFiledCardDeflected() {
         val travelDay = open(URL, TravelDay.class);
         val paymentByCard = travelDay.clickButtonPay();
         val numberCard = DataHelper.NumberCard.numberCardDeflected();
