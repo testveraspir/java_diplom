@@ -11,8 +11,6 @@ import ru.netology.web.data.DataHelper;
 import ru.netology.web.data.SQLHelper;
 import ru.netology.web.page.TravelDay;
 
-import java.sql.SQLException;
-
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -199,7 +197,7 @@ public class PaymentInCreditTest {
         val name = DataHelper.Name.nameGenerate("en");
         val cvcCvv = DataHelper.CvcCvv.cvcCvv0();
         paymentByCard.paymentByCard(numberCard, month, year, name, cvcCvv);
-        //paymentByCard.shouldInscriptionAbout0();
+        paymentByCard.shouldInscriptionAbout0();
 
     }
 

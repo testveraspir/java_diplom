@@ -4,7 +4,6 @@ import lombok.SneakyThrows;
 import lombok.val;
 
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class SQLHelper {
      public static final String APPROVED = "APPROVED";
