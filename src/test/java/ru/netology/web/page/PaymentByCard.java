@@ -53,11 +53,11 @@ public class PaymentByCard {
 
 
     public void shouldMessageAboutLuck() {
-        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofMinutes(5));
+        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     public void shouldMessageAboutError() {
-        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofMinutes(5));
+        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(20));
 
     }
 
