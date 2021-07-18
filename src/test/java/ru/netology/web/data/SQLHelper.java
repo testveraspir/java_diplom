@@ -8,11 +8,14 @@ import java.sql.DriverManager;
 public class SQLHelper {
      public static final String APPROVED = "APPROVED";
      public static final String DECLINED = "DECLINED";
-     private static final String url = "jdbc:mysql://localhost:3306/app"; // для MySQL
+     //private static final String url = "jdbc:mysql://localhost:3306/app"; // для MySQL
      //для Postgres
      //private static final String url = "jdbc:postgresql:5432/app";
-     private static final String user = "app";
-     private static final String password = "pass";
+     //private static final String user = "app";
+     //private static final String password = "pass";
+     private static final String url = System.getProperty("db.url");
+     private static final String user = System.getProperty("user");
+     private static final String password = System.getProperty("password");
      public static final String REQUEST_ORDER_ENTITY = "SELECT payment_id FROM order_entity";
      public static final String COLUMN_PAYMENT_ID = "payment_id";
      public static final String REQUEST_STATUS_CREDIT = "SELECT status FROM credit_request_entity";
