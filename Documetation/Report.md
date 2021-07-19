@@ -3,7 +3,11 @@
 24.06.2021 -  .07.2021г было проведено:  тестирование приложения “Путешествие дня” согласно [плану автоматизации тестирования](https://github.com/testveraspir/java_diplom/blob/master/Documetation/Plan.md).  
 ## Количество тест-кейсов
 Всего 26, из них:  успешных - 14 (53,8%) и неуспешных - 12 (46,2%)
-![отчёт](https://github.com/testveraspir/java_diplom/blob/master/Documetation/report.png)
+### Отчёт по Gradle
+![Отчёт по Gradle](https://github.com/testveraspir/java_diplom/blob/master/Documetation/report.png)
+
+### Отчёт по Allure
+![Отчёт по Allure](https://github.com/testveraspir/java_diplom/blob/master/Documetation/AllureReport.png)
 ## Общие рекомендации и ссылки на найденные баги
 - Исправить ошибку в слове “Маракэш”, на “Маракеш”
 
