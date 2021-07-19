@@ -37,3 +37,6 @@
 - Может быть, изменить внешний вид кнопок
 
 [Не подходит фон кнопки “Купить”](https://github.com/testveraspir/java_diplom/issues/2)
+- Наладить поддержку PostgreSQL
+
+[Приложение "Путешествие дня" не поддерживается PostgreSQL](https://github.com/testveraspir/java_diplom/issues/11)
