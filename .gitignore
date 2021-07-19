@@ -4,6 +4,9 @@ Thumbs.db*
 HELP.md
 .gradle
 build/
+data_mysql/
+data_postgres/
+.allure/
 
 ### STS ###
 .apt_generated
@@ -27,6 +30,7 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+
 
 ### VS Code ###
 .vscode/

@@ -20,7 +20,7 @@ public class PaymentByCard {
     private SelenideElement buttonClose = $(".notification_status_error").$("button");
 
     public PaymentByCard() {
-        heading.shouldBe(Condition.visible, Duration.ofSeconds(20));
+        heading.shouldBe(Condition.visible, Duration.ofMinutes(5));
     }
 
     public void paymentByCard(DataHelper.NumberCard numberCard, DataHelper.Month month, DataHelper.Year year, DataHelper.Name name, DataHelper.CvcCvv cvcCvv) {
@@ -53,11 +53,11 @@ public class PaymentByCard {
 
 
     public void shouldMessageAboutLuck() {
-        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofSeconds(20));
+        $(".notification_status_ok").shouldBe(Condition.visible, Duration.ofMinutes(1));
     }
 
     public void shouldMessageAboutError() {
-        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(20));
+        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofMinutes(1));
 
     }
 
