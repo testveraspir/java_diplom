@@ -22,8 +22,8 @@
 
    для **MySQL**: 
     - gradlew clean -Ddb.url="jdbc:mysql://localhost:3306/app" test allureReport
-    - gradlew -Ddb.url="jdbc:mysql://localhost:3306/app" allureServe
+    
     
    для **PostgreSQL**:
     - gradlew clean -Ddb.url="jdbc:postgresal://localhost:5432/app" test allureReport 
-    - gradlew -Ddb.url="jdbc:postgresal://localhost:5432/app" allureServe
+    
